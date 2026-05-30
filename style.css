@@ -1,0 +1,177 @@
+Body{
+    
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0B0C10; /* Deep Onyx Main Background */
+    color: #EAEAEA;            /* Light Silver Text for High Contrast */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. Layout & Typography Components
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, #1F2833 0%, #0B0C10 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #007acc; /* Tech Blue Accent Line */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    color: #4fc1ff;
+    font-size: 1.8rem;
+    margin: 3rem auto 1rem auto;
+    position: relative;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #007acc;
+    margin: 0.5rem auto 0 auto;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. Photo Gallery Sub-Grid & Cards
+   ========================================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem; /* Creates nice separation below dashboard stats panel */
+    justify-content: center;
+}
+
+.photo-card img {
+    width: 100%;        
+    height: 380px;      /* Fixed uniform grid height constraint */
+    object-fit: cover;  /* Crops cleanly inside the box without stretching */
+    border-radius: 12px;
+    border: 1px solid #3c3c3c; /* Subtle slate border matching stats box */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Interactive Developer Glow Hover Effect */
+.photo-card img:hover {
+    transform: translateY(-5px);
+    border-color: #4fc1ff; /* Transitions to electric blue on hover */
+    box-shadow: 0 12px 25px rgba(0, 122, 204, 0.4); 
+}
+
+/* ==========================================================================
+   4. Interactive Lightbox Component
+   ========================================================================== */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 12, 16, 0.95); /* Deep translucent backdrop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 6px;
+    box-shadow: 0 0 25px rgba(0, 122, 204, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    user-select: none;
+}
+
+.close-btn:hover {
+    color: #4fc1ff;
+}
+
+/* ==========================================================================
+   5. Global Footer Footer
+   ========================================================================== */
+footer {
+    background-color: #111111;
+    color: #858585;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    border-top: 1px solid #252526;
+}
+
+/* ==========================================================================
+   6. Responsive Layout Media Queries
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        font-size: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .photo-card img {
+        height: 280px; /* Slightly shorter on mobile screens for faster scrolling */
+    }
+}
